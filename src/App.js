@@ -1,11 +1,15 @@
-import logo from "./assets/logo.png"
+import Header from "./components/Header";
+import BarraConcluidos from "./components/BarraConcluidos";
+import ListaPerguntas from "./components/ListaPerguntas";
+
 
 export default function App() {
   return (
-    <div className="header">
-      <img src={logo} alt="logo" />
-      <h1>ZapRecall</h1>
-    </div>
+    <>
+      <Header />
+      <ListaPerguntas />
+      <BarraConcluidos />
+    </>
   );
 }
 
