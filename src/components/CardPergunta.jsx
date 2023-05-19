@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import seta from "../assets/seta_play.png"
 
-export default function CardPergunta() {
+export default function CardPergunta(props) {
     return (
         <CardFechado>
-            <p>Pergunta</p> 
+            <p>Pergunta {props.index}</p> 
             <img src={seta} alt="ícone seta" />
         </CardFechado>
     )
@@ -27,6 +27,6 @@ const CardFechado = styled.div`
         font-style: normal;
         font-weight: 700;
         font-size: 16px;
-        color: #333333
+        color: #333333;
     }
 `

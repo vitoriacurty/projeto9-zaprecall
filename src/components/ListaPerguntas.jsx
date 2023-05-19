@@ -2,9 +2,12 @@ import styled from "styled-components"
 import CardPergunta from "./CardPergunta"
 import logo from "../assets/logo.png"
 import BarraConcluidos from "./BarraConcluidos"
+import mock from "../mock"
+import { useState } from "react"
 
 
 export default function ListaPerguntas() {
+    
     return (
         <Pergunta>
             <ContainerHeader>
@@ -12,12 +15,15 @@ export default function ListaPerguntas() {
                 <h1>ZapRecall</h1>
             </ContainerHeader>
 
-            <CardPergunta />
-            <CardPergunta />
-            <CardPergunta />
-            <CardPergunta />
+            {mock.map((card, i) => (
+                <CardPergunta
+                    index={i + 1}
+                    key={card.question}
+                    card={card}
+                />
+            ))}
 
-            <BarraConcluidos />
+            <BarraConcluidos concluidos={mock.length} />
 
         </Pergunta>
     )
