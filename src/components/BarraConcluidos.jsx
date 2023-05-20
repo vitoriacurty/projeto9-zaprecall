@@ -9,7 +9,7 @@ export default function BarraConcluidos(props) {
 }
 
 const Contador = styled.div`
-    width: 100%;
+    width: 100vw;
     min-height: 70px;
     bottom: 0;
     background: #FFFFFF;
