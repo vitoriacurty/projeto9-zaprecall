@@ -35,6 +35,7 @@ const Pergunta = styled.div`
     background-color: #FB6B6B
     margin: 0;
     margin-right: auto; 
+    margin-bottom: 100px;
     padding: 0px;
     padding-bottom: 0px;
     display: flex;
