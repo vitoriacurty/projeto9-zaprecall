@@ -2,11 +2,16 @@ import { useState } from "react"
 import styled from "styled-components"
 import seta from "../assets/seta_play.png"
 import setaVirar from "../assets/seta_virar.png"
+import iconeErro from "../assets/icone_erro.png"
+import iconeQuase from "../assets/icone_quase.png"
+import iconeCerto from "../assets/icone_certo.png"
+import { Green, Yellow, Red, Gray } from "../colors"
 
 export default function CardPergunta({ index, card }) {
   const [pergunta, setPergunta] = useState(false)
   const [resposta, setResposta] = useState(false)
   const [perguntaRespondida, setPerguntaRespondida] = useState(false)
+  const [estado, setEstado] = useState("-") // não, quase, zap
 
   function flipCardQuestion() {
     if (!perguntaRespondida) {
@@ -18,17 +23,18 @@ export default function CardPergunta({ index, card }) {
     setResposta(true)
   }
 
-  function answerQuestion() {
+  function answerQuestion(estadoPergunta, color) {
     setPergunta(false)
     setPerguntaRespondida(true)
+    setEstado(estadoPergunta)
   }
 
   function render() {
     if (!pergunta) {
       return (
-        <CardFechado>
+        <CardFechado estado={estado}>
           <p>Pergunta {index}</p>
-          <img onClick={flipCardQuestion} src={seta} alt="ícone seta" />
+          <img onClick={flipCardQuestion} src={handleIcon()} alt="ícone seta" />
         </CardFechado>
       )
     } else {
@@ -44,9 +50,9 @@ export default function CardPergunta({ index, card }) {
           <FlashcardPergunta>
             <p>{card.answer}</p>
             <Botoes>
-              <button onClick={answerQuestion}>Não lembrei</button>
-              <button onClick={answerQuestion}>Quase não lembrei</button>
-              <button onClick={answerQuestion}>Zap!</button>
+              <Botao cor={Red} onClick={() => answerQuestion("erro")}>Não lembrei</Botao>
+              <Botao cor={Yellow} onClick={() => answerQuestion("quase")}>Quase não lembrei</Botao>
+              <Botao cor={Green} onClick={() => answerQuestion("zap")}>Zap!</Botao>
             </Botoes>
           </FlashcardPergunta>
         )
@@ -54,11 +60,34 @@ export default function CardPergunta({ index, card }) {
     }
   }
 
+  function handleIcon() {
+    let icon;
+
+    if (estado === "erro") {
+      icon = iconeErro;
+    } else if (estado === "quase") {
+      icon = iconeQuase;
+    } else if (estado === "zap") {
+      icon = iconeCerto;
+    } else {
+      icon = seta;
+    }
+
+    return icon;
+  }
+
   return (
     <>
-    {render()}
+      {render()}
     </>
   )
+}
+
+const colorMap = {
+  erro: Red,
+  quase: Yellow,
+  zap: Green,
+  default: Gray
 }
 
 const CardFechado = styled.div`
@@ -77,7 +106,9 @@ const CardFechado = styled.div`
         font-style: normal;
         font-weight: 700;
         font-size: 16px;
-        color: #333333;
+        
+        color: ${props => colorMap[props.estado] || colorMap.default};
+        text-decoration: ${props => props.estado === "-" ? "none" : "line-through"};
     }
 `
 
@@ -111,20 +142,21 @@ const FlashcardPergunta = styled.div`
 const Botoes = styled.div`
     display: flex;
     justify-content: space-between;
-    button {
+`
+
+const Botao = styled.button`
         width: 90px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: #ffffff;
-        background-color: green;
+        background-color: ${props => props.cor};
         border-radius: 5px;
-        border: 1px solid green;
+        border: 1px solid ${props => props.cor};
         font-family: 'Recursive';
         font-style: normal;
         font-weight: 400;
         font-size: 12px;
         padding: 5px;
-    }
 `
