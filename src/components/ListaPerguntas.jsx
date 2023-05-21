@@ -5,9 +5,10 @@ import BarraConcluidos from "./BarraConcluidos"
 import mock from "../mock"
 import { useState } from "react"
 
-
 export default function ListaPerguntas() {
-    
+
+    const [contador, setContador] = useState(0)
+
     return (
         <Pergunta>
             <ContainerHeader>
@@ -20,10 +21,12 @@ export default function ListaPerguntas() {
                     index={i + 1}
                     key={card.question}
                     card={card}
+                    contador={contador}
+                    setContador={setContador}
                 />
             ))}
 
-            <BarraConcluidos concluidos={mock.length} />
+            <BarraConcluidos concluidos={mock.length} contador={contador}/>
 
         </Pergunta>
     )

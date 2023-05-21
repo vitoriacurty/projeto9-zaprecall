@@ -7,7 +7,7 @@ import iconeQuase from "../assets/icone_quase.png"
 import iconeCerto from "../assets/icone_certo.png"
 import { Green, Yellow, Red, Gray } from "../colors"
 
-export default function CardPergunta({ index, card }) {
+export default function CardPergunta({ index, card, contador, setContador }) {
   const [pergunta, setPergunta] = useState(false)
   const [resposta, setResposta] = useState(false)
   const [perguntaRespondida, setPerguntaRespondida] = useState(false)
@@ -27,6 +27,7 @@ export default function CardPergunta({ index, card }) {
     setPergunta(false)
     setPerguntaRespondida(true)
     setEstado(estadoPergunta)
+    setContador(contador + 1) 
   }
 
   function render() {

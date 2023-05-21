@@ -1,9 +1,10 @@
 import styled from "styled-components"
 
-export default function BarraConcluidos(props) {
+export default function BarraConcluidos({concluidos,contador}) {
+
     return (
         <Contador>
-            <p>0/{props.concluidos} CONCLUÍDOS</p>
+            <p>{contador}/{concluidos} CONCLUÍDOS</p>
         </Contador>
     )
 }
