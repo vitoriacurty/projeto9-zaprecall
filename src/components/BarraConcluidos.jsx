@@ -4,7 +4,7 @@ export default function BarraConcluidos({concluidos,contador}) {
 
     return (
         <Contador>
-            <p>{contador}/{concluidos} CONCLUÍDOS</p>
+            <p data-test="footer">{contador}/{concluidos} CONCLUÍDOS</p>
         </Contador>
     )
 }

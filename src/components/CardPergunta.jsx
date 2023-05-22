@@ -41,15 +41,15 @@ export default function CardPergunta({ index, card, contador, setContador }) {
     } else {
       if (!resposta) {
         return (
-          <FlashcardPergunta>
+          <FlashcardPergunta data-test="flashcard">
             <p data-test="flashcard-text">{card.question}</p>
             <img data-test="turn-btn" onClick={flipCardAnswer} src={setaVirar} alt="ícone seta virar" />
           </FlashcardPergunta>
         )
       } else {
         return (
-          <FlashcardPergunta>
-            <p>{card.answer}</p>
+          <FlashcardPergunta data-test="flashcard">
+            <p data-test="flashcard-text">{card.answer}</p>
             <Botoes>
               <Botao data-test="no-btn" cor={Red} onClick={() => answerQuestion("erro")}>Não lembrei</Botao>
               <Botao data-test="partial-btn" cor={Yellow} onClick={() => answerQuestion("quase")}>Quase não lembrei</Botao>
