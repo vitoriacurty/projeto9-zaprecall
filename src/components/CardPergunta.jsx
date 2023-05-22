@@ -33,17 +33,17 @@ export default function CardPergunta({ index, card, contador, setContador }) {
   function render() {
     if (!pergunta) {
       return (
-        <CardFechado estado={estado}>
-          <p>Pergunta {index}</p>
-          <img onClick={flipCardQuestion} src={handleIcon()} alt="ícone seta" />
+        <CardFechado data-test="flashcard" estado={estado}>
+          <p data-test="flashcard-text">Pergunta {index}</p>
+          <img data-test="play-btn" onClick={flipCardQuestion} src={handleIcon()} alt="ícone seta" />
         </CardFechado>
       )
     } else {
       if (!resposta) {
         return (
           <FlashcardPergunta>
-            <p>{card.question}</p>
-            <img onClick={flipCardAnswer} src={setaVirar} alt="ícone seta virar" />
+            <p data-test="flashcard-text">{card.question}</p>
+            <img data-test="turn-btn" onClick={flipCardAnswer} src={setaVirar} alt="ícone seta virar" />
           </FlashcardPergunta>
         )
       } else {
@@ -51,9 +51,9 @@ export default function CardPergunta({ index, card, contador, setContador }) {
           <FlashcardPergunta>
             <p>{card.answer}</p>
             <Botoes>
-              <Botao cor={Red} onClick={() => answerQuestion("erro")}>Não lembrei</Botao>
-              <Botao cor={Yellow} onClick={() => answerQuestion("quase")}>Quase não lembrei</Botao>
-              <Botao cor={Green} onClick={() => answerQuestion("zap")}>Zap!</Botao>
+              <Botao data-test="no-btn" cor={Red} onClick={() => answerQuestion("erro")}>Não lembrei</Botao>
+              <Botao data-test="partial-btn" cor={Yellow} onClick={() => answerQuestion("quase")}>Quase não lembrei</Botao>
+              <Botao data-test="zap-btn" cor={Green} onClick={() => answerQuestion("zap")}>Zap!</Botao>
             </Botoes>
           </FlashcardPergunta>
         )
